@@ -16,6 +16,9 @@ export default defineConfig({
         viewport: { width: ${screen.width}, height: ${screen.height} },
         ignoreHTTPSErrors: true,
     },
+    reporter: [
+        ['html']
+    ],
 });`
 }
 
