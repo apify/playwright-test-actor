@@ -16,11 +16,6 @@ export default defineConfig({
         viewport: { width: ${screen.width}, height: ${screen.height} },
         ignoreHTTPSErrors: true,
     },
-    reporter: [
-        ['line'],
-        ['html'],
-        ['json', {  outputFile: 'test-results.json' }]
-    ],
 });`
 }
 
@@ -46,10 +41,10 @@ function updateConfig(args: {
         screenWidth = 1280, 
         screenHeight =  720,
         headful = false,
-        timeout = 60000,
+        timeout = 60,
     } = args;
 
-    const config = getConfig({screen: { width: screenWidth, height: screenHeight }, headful, timeout});
+    const config = getConfig({screen: { width: screenWidth, height: screenHeight }, headful, timeout: timeout * 1000});
     writeFileSync(path.join(__dirname, 'playwright.config.ts'), config, { encoding: 'utf-8' });
 }
 
