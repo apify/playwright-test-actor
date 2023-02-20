@@ -5,9 +5,9 @@
     "schemaVersion": 1,
     "properties": {
         "testCode": {
-            "title": "Test Suite",
+            "title": "Test suite code",
             "type": "string",
-            "description": "Contents of the generated test suite file",
+            "description": "Contents of the test suite file.",
             "editor": "javascript",
             "prefill": "import { test, expect } from '@playwright/test';    \n    test('has title', async ({ page }) => {      \n      await page.goto('https://playwright.dev/');\n      // Expect a title \"to contain\" a substring.\n      await expect(page).toHaveTitle(/Playwright/);    \n    });\n    test('get started link', async ({ page }) => {\n        await page.goto('https://playwright.dev/');\n        // Click the get started link.\n        await page.getByRole('link', { name: 'Get started' }).click();\n        // Expects the URL to contain intro. \n        await expect(page).toHaveURL(/.*intro/);    \n    });" 
         },
@@ -23,11 +23,17 @@
             "description": "Screen height in pixels. Default is `720`.",
             "default": 720
         },
-        "headless": {
-            "title": "Run in headless mode",
+        "headful": {
+            "title": "Run in headful mode",
             "type": "boolean",
-            "description": "Runs tests in headless mode. Try turning this off if you are having problems e.g. with bot protection services. Default is `true`.",
-            "default": true
+            "description": "Runs tests in headful mode. Try turning this on if you are having problems e.g. with bot protection services. Default is `false`.",
+            "default": false
+        },
+        "timeout": {
+            "title": "Timeout",
+            "type": "integer",
+            "description": "Maximum run time for the entire test suite (in seconds). Default is `60`.",
+            "default": 60
         }
     },
     "required": ["testCode"]

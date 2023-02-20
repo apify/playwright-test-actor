@@ -5,13 +5,14 @@ import { writeFileSync, readFileSync } from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
 
-const getConfig = (options: {screen: {width: number, height: number}, headless: boolean}) => {
-    const {screen, headless} = options;
+const getConfig = (options: {screen: {width: number, height: number}, headful: boolean, timeout: number}) => {
+    const {screen, headful, timeout} = options;
 
     return `import { defineConfig } from '@playwright/test';
 export default defineConfig({
+    timeout: ${timeout}
     use: {
-        headless: ${headless},
+        headless: ${!headful},
         viewport: { width: ${screen.width}, height: ${screen.height} },
         ignoreHTTPSErrors: true,
     },
@@ -38,15 +39,17 @@ function storeTestCode(args: { contents: string, path: string }) {
 function updateConfig(args: {
     screenWidth?: number,
     screenHeight?: number,
-    headless?: boolean,
+    headful?: boolean,
+    timeout?: number,
 }) {
     const { 
         screenWidth = 1280, 
         screenHeight =  720,
-        headless = false,
+        headful = false,
+        timeout = 60000,
     } = args;
 
-    const config = getConfig({screen: { width: screenWidth, height: screenHeight }, headless});
+    const config = getConfig({screen: { width: screenWidth, height: screenHeight }, headful, timeout});
     writeFileSync(path.join(__dirname, 'playwright.config.ts'), config, { encoding: 'utf-8' });
 }
 
