@@ -26,7 +26,7 @@ After running the tests, the Apify Platform stores the results in comprehensive 
 
 Playwright Test toolkit automatically downloads the latest versions of Chromium, Firefox, and WebKit browsers and installs them in the Apify Platform. 
 
-This way, you can test your websites using all the most popular browsers without worrying about compatibility issues.
+This way, you can test your websites using all the popular browsers without worrying about compatibility issues.
 
 <center>
 <img src="https://raw.githubusercontent.com/apify/playwright-test-actor/main/docs/static/devices.gif" alt="Testing with multiple browser versions at once">
