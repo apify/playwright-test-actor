@@ -10,7 +10,7 @@ const getConfig = (options: {screen: {width: number, height: number}, headful: b
 
     return `import { defineConfig } from '@playwright/test';
 export default defineConfig({
-    timeout: ${timeout}
+    timeout: ${timeout},
     use: {
         headless: ${!headful},
         viewport: { width: ${screen.width}, height: ${screen.height} },
