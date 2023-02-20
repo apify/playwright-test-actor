@@ -8,13 +8,17 @@ Run your Playwright tests on the Apify Platform effectively and easily. Just set
 
 No more pre-commit hooks or CI/CD pipelines. Integrate your tests with the Apify Platform using a user-friendly UI and forget about the hassle of setting up your test environment.
 
-![Test configuration with comprehensive UI](https://raw.githubusercontent.com/apify/playwright-test-actor/main/docs/static/actorInput.gif)
+<center>
+<img src="https://raw.githubusercontent.com/apify/playwright-test-actor/main/docs/static/actorInput.gif" alt="Test configuration with comprehensive UI">
+</center>
 
 ### Collect and analyze your test results online
 
 After running the tests, the Apify Platform stores the results in comprehensive datasets. You can view the results directly on the platform or download them to your local machine using a REST API.
 
-![Analyzing understandable test reports](https://raw.githubusercontent.com/apify/playwright-test-actor/main/docs/static/testReport.gif)
+<center>
+<img src="https://raw.githubusercontent.com/apify/playwright-test-actor/main/docs/static/testReport.gif" alt="Analyzing understandable test reports">
+</center>
 
 
 
@@ -24,7 +28,9 @@ Playwright Test toolkit automatically downloads the latest versions of Chromium,
 
 This way, you can test your websites using all the most popular browsers without worrying about compatibility issues.
 
-![Multiple browser versions at once](https://raw.githubusercontent.com/apify/playwright-test-actor/main/docs/static/devices.gif)
+<center>
+<img src="https://raw.githubusercontent.com/apify/playwright-test-actor/main/docs/static/devices.gif" alt="Testing with multiple browser versions at once">
+</center>
 
 
 
