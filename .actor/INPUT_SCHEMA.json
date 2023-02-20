@@ -1,0 +1,34 @@
+{
+    "title": "Playwright Test",
+    "description": "Playwright Test is a Node.js library to automate end-to-end web tests across all modern browsers. This actor runs Playwright Test in the cloud and stores the results in the Apify platform. The results can be (programmatically or manually) retrieved using Apify's REST API.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "testCode": {
+            "title": "Test Suite",
+            "type": "string",
+            "description": "Contents of the generated test suite file",
+            "editor": "javascript",
+            "prefill": "import { test, expect } from '@playwright/test';    \n    test('has title', async ({ page }) => {      \n      await page.goto('https://playwright.dev/');\n      // Expect a title \"to contain\" a substring.\n      await expect(page).toHaveTitle(/Playwright/);    \n    });\n    test('get started link', async ({ page }) => {\n        await page.goto('https://playwright.dev/');\n        // Click the get started link.\n        await page.getByRole('link', { name: 'Get started' }).click();\n        // Expects the URL to contain intro. \n        await expect(page).toHaveURL(/.*intro/);    \n    });" 
+        },
+        "screenWidth": {
+            "title": "Screen width",
+            "type": "integer",
+            "description": "Screen width in pixels. Default is `1280`.",
+            "default": 1280
+        },
+        "screenHeight": {
+            "title": "Screen height",
+            "type": "integer",
+            "description": "Screen height in pixels. Default is `720`.",
+            "default": 720
+        },
+        "headless": {
+            "title": "Run in headless mode",
+            "type": "boolean",
+            "description": "Runs tests in headless mode. Try turning this off if you are having problems e.g. with bot protection services. Default is `true`.",
+            "default": true
+        }
+    },
+    "required": ["testCode"]
+}
