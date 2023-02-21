@@ -7,6 +7,7 @@ export default defineConfig({
         ignoreHTTPSErrors: true,
     },
     reporter: [
-        ['html']
+        ['html'],
+        ['json', { outputFile: 'test-results.json' }]
     ],
 });

@@ -4,6 +4,7 @@ import { Dictionary } from 'apify-client';
 import { writeFileSync, readFileSync } from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
+import { transformToTabular } from './transform';
 
 const getConfig = (options: {screen: {width: number, height: number}, headful: boolean, timeout: number}) => {
     const {screen, headful, timeout} = options;
@@ -17,13 +18,14 @@ export default defineConfig({
         ignoreHTTPSErrors: true,
     },
     reporter: [
-        ['html']
+        ['html'],
+        ['json', { outputFile: 'test-results.json' }]
     ],
 });`
 }
 
 function runTests() {
-    execSync('npx playwright test', {
+    execSync(`npx playwright test --config=${__dirname}/playwright.config.ts`, {
         cwd: __dirname,
         encoding: 'utf8',
         stdio: 'inherit',
@@ -68,7 +70,10 @@ function updateConfig(args: {
 
     const reportURL = await kvs.getPublicUrl('report');
 
-    log.info('The test run has finished! The report is available at the link below:');
+    const jsonReport = JSON.parse(readFileSync(path.join(__dirname, 'test-results.json'), { encoding: 'utf-8' }));
+    await Actor.pushData(transformToTabular(jsonReport));
+
+    log.info('The test run has finished! The report is available in the Output tab or at the link below:');
     console.log(reportURL);
     
     await Actor.exit();

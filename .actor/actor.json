@@ -3,5 +3,8 @@
 	"name": "playwright-test",
 	"version": "0.0",
 	"buildTag": "latest",
-	"environmentVariables": {}
+	"environmentVariables": {},
+	"storages": {
+        "dataset": "./dataset_table.json"
+    }
 }
