@@ -6,8 +6,8 @@ import path from 'path';
 import { execSync } from 'child_process';
 import { transformToTabular } from './transform';
 
-const getConfig = (options: {screen: {width: number, height: number}, headful: boolean, timeout: number}) => {
-    const {screen, headful, timeout} = options;
+const getConfig = (options: {screen: {width: number, height: number}, headful: boolean, timeout: number, locale: string, darkMode: boolean, ignoreHTTPSErrors: boolean}) => {
+    const {screen, headful, timeout, ignoreHTTPSErrors, darkMode, locale} = options;
 
     return `import { defineConfig } from '@playwright/test';
 export default defineConfig({
@@ -15,7 +15,9 @@ export default defineConfig({
     use: {
         headless: ${!headful},
         viewport: { width: ${screen.width}, height: ${screen.height} },
-        ignoreHTTPSErrors: true,
+        ignoreHTTPSErrors: ${ignoreHTTPSErrors},
+        colorSchema: '${darkMode ? 'dark' : 'light'}',
+        locale: '${locale}',
     },
     reporter: [
         ['html'],
@@ -41,15 +43,21 @@ function updateConfig(args: {
     screenHeight?: number,
     headful?: boolean,
     timeout?: number,
+    darkMode?: boolean,
+    locale?: string,
+    ignoreHTTPSErrors?: boolean,
 }) {
     const { 
         screenWidth = 1280, 
         screenHeight =  720,
         headful = false,
         timeout = 60,
+        darkMode = false,
+        locale = 'en-US',
+        ignoreHTTPSErrors = true,
     } = args;
 
-    const config = getConfig({screen: { width: screenWidth, height: screenHeight }, headful, timeout: timeout * 1000});
+    const config = getConfig({screen: { width: screenWidth, height: screenHeight }, headful, timeout: timeout * 1000, locale, darkMode, ignoreHTTPSErrors});
     writeFileSync(path.join(__dirname, 'playwright.config.ts'), config, { encoding: 'utf-8' });
 }
 

@@ -5,6 +5,8 @@ export default defineConfig({
         headless: true,
         viewport: { width: 1920, height: 720 },
         ignoreHTTPSErrors: true,
+        colorSchema: 'dark',
+        locale: 'cs-CZ',
     },
     reporter: [
         ['html'],
