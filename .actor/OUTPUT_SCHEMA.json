@@ -11,7 +11,8 @@
                     "runnerName",
                     "result",
                     "errors",
-                    "duration"
+                    "duration",
+                    "video"
                 ]
             },
             "display": {                      
@@ -30,13 +31,17 @@
                         "label": "Result",
                         "format": "boolean"
                     },
-                    "Errors": {
+                    "errors": {
                         "label": "Error messages",
                         "format": "array"
                     },
                     "duration": {
                         "label": "Duration",
                         "format": "number"
+                    },
+                    "video": {
+                        "label": "Video recording",
+                        "format": "link"
                     }
                 }
             }
