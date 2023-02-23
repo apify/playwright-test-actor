@@ -5,6 +5,6 @@
 	"buildTag": "latest",
 	"environmentVariables": {},
 	"storages": {
-        "dataset": "./dataset_table.json"
+        "dataset": "./OUTPUT_SCHEMA.json"
     }
 }
