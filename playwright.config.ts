@@ -10,7 +10,7 @@ export default defineConfig({
         video: 'on',
     },
     reporter: [
-        ['html'],
+        ['html', { open: 'never' }],
         ['json', { outputFile: 'test-results.json' }]
     ],
 });

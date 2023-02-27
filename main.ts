@@ -21,18 +21,22 @@ export default defineConfig({
         video: '${video}',
     },
     reporter: [
-        ['html'],
+        ['html', { open: 'never' }],
         ['json', { outputFile: 'test-results.json' }]
     ],
 });`
 }
 
 function runTests() {
-    execSync(`npx playwright test --config=${__dirname}/playwright.config.ts`, {
-        cwd: __dirname,
-        encoding: 'utf8',
-        stdio: 'inherit',
-    });
+    try {
+        execSync(`npx playwright test --config=${__dirname}/playwright.config.ts`, {
+            cwd: __dirname,
+            encoding: 'utf8',
+            stdio: 'inherit',
+        });
+    } catch (e) {
+        console.log(e);
+    }
 }
 
 function storeTestCode(args: { contents: string, path: string }) {
