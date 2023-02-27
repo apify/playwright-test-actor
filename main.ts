@@ -35,7 +35,7 @@ function runTests() {
             stdio: 'inherit',
         });
     } catch (e) {
-        console.log(e);
+        // suppress error, the report will be generated anyway
     }
 }
 

@@ -1,5 +1,11 @@
 import { v4 } from 'uuid';
 
+// as per https://github.com/microsoft/playwright/issues/13522
+const ansiRegex = new RegExp('[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)|(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))', 'g');
+function stripAnsi(str: string): string {
+  return str.replace(ansiRegex, '');
+}
+
 export function transformToTabular(testResults: Record<string, any>, attachmentLinks: Attachment[]): any[] {
     const acc: any[] = [];
 
@@ -13,7 +19,7 @@ export function transformToTabular(testResults: Record<string, any>, attachmentL
                     testName: test.title,
                     runnerName: runner.projectName,
                     result: runner.status === 'expected',
-                    errors: results.reduce((p: string[], e: {errors: {message: string}[]}) => [...p, ...e.errors.map(e => e.message)], []),
+                    errors: results.reduce((p: string[], e: {errors: {message: string}[]}) => [...p, ...e.errors.map(e => stripAnsi(e.message))], []),
                     duration: results.reduce((acc: number, curr: {duration: number}) => acc + curr.duration, 0),
                     video: attachmentLinks.find(x => results.reduce((p: string[], x: {attachments: { path:string }[]}) => [...p, ...x.attachments.map(x => x.path)], []).includes(x.path))?.url,
                 })
